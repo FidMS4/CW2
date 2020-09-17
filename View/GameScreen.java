@@ -2,17 +2,18 @@ package View;
 
 import java.awt.*;
 import javax.swing.*;
-import javax.swing.border.TitledBorder;
+import javax.swing.border.*;
 
 import Controller.PongEventListener;
+import Model.Pong;
 
-public class PongMenu {
-	
+public class GameScreen {
 	// public enum GameState {
 	// 	READY, PLAYING, GAMEOVER
 	// }
 
 	private JFrame window;
+	private Pong canvas;
 	private JButton playButton = new JButton("Play!");
 	//private GameState gameState = GameState.READY;
 	private JRadioButton redButton = new JRadioButton("Red");
@@ -22,23 +23,24 @@ public class PongMenu {
 	private JRadioButton blackButton2 = new JRadioButton("White");
 	private JButton exitButton = new JButton("Exit");
 
-	public PongMenu(JFrame window) {
+	public GameScreen(JFrame window) {
 		this.window = window;
+		window.setTitle("Playing Pong!");
 	}
 
 	public void start() {
 		Container cp = window.getContentPane();
 
-		JPanel panel = new JPanel();
-		panel.setPreferredSize(new Dimension(300, 150));
-		cp.add(BorderLayout.NORTH, panel);
+		JPanel southPanel = new JPanel();
+		southPanel.setLayout(new GridLayout(3, 1));
+		cp.add(BorderLayout.SOUTH, southPanel);
 
-		panel.setLayout(new GridLayout(2, 1));
+
 		JPanel radioPanel = new JPanel();
 		radioPanel.add(redButton);
 		radioPanel.add(blackButton);
 		radioPanel.add(orangeButton);
-		panel.add(radioPanel);
+		southPanel.add(radioPanel);
 
 		ButtonGroup colorGroup = new ButtonGroup();
 		colorGroup.add(redButton);
@@ -48,16 +50,10 @@ public class PongMenu {
 		TitledBorder title = BorderFactory.createTitledBorder("Choose ball color");
 		radioPanel.setBorder(title);
 
-
-		JPanel centerPanel = new JPanel();
-		centerPanel.setPreferredSize(new Dimension(300, 150));
-		cp.add(BorderLayout.CENTER, centerPanel);
-
-		centerPanel.setLayout(new GridLayout(2, 1));
 		JPanel radioPanel2 = new JPanel();
 		radioPanel2.add(whiteButton);
 		radioPanel2.add(blackButton2);
-		centerPanel.add(radioPanel2);
+		southPanel.add(radioPanel2);
 
 		ButtonGroup colors2 = new ButtonGroup();
 		colors2.add(whiteButton);
@@ -66,16 +62,10 @@ public class PongMenu {
 		TitledBorder title2 = BorderFactory.createTitledBorder("Choose background color");
 		radioPanel2.setBorder(title2);
 
-
-		JPanel southPanel = new JPanel();
-		cp.add(BorderLayout.SOUTH, southPanel);
-		southPanel.setLayout(new GridLayout(2, 1));
-
 		JPanel buttonPanel = new JPanel();
 		buttonPanel.add(playButton);
 		buttonPanel.add(exitButton);
 		southPanel.add(buttonPanel);
-
 
 		PongEventListener listener = new PongEventListener(this);
 		exitButton.addActionListener(listener);
@@ -84,10 +74,15 @@ public class PongMenu {
 		orangeButton.addActionListener(listener);
 		whiteButton.addActionListener(listener);
 		blackButton2.addActionListener(listener);
+		playButton.addActionListener(listener);
 	}
 
 	public JButton getExitButton() {
 		return exitButton;
+	}
+
+	public JButton getPlayButton() {
+		return playButton;
 	}
 
 	public JRadioButton getRedButton() {
@@ -114,7 +109,8 @@ public class PongMenu {
 		return window;
 	}
 
-	// public TriangleCanvas getCanvas() {
-	// 	return canvas;
-	// }
+	public Pong getCanvas() {
+		return canvas;
+	}
+
 }

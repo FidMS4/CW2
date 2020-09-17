@@ -4,16 +4,19 @@ import java.awt.event.*;
 import java.awt.*;
 import javax.swing.*;
 
+import Model.Pong;
+import View.GameScreen;
 import View.MenuScreen;
-import View.PongMenu;
+import View.PongCanvas;
 
 public class PongEventListener implements ActionListener, MouseListener {
 	
-	private PongMenu panel;
-	private int clicks = 0;
-	//private Pong pong;
+	private GameScreen panel;
+	private Pong pong;
+	public static Color ballColor;
+	public static Color backgroundColor;
 
-	public PongEventListener(PongMenu panel) {
+	public PongEventListener(GameScreen panel) {
 		this.panel = panel;
 	}
 
@@ -28,36 +31,32 @@ public class PongEventListener implements ActionListener, MouseListener {
 			menu.start();
 			window.pack();
 			window.revalidate();
-		}
 
-		// } else if (source == panel.getRedButton()) {
-		// 	color = Color.red;
-		// } else if (source == panel.getYellowButton()) {
-		// 	color = Color.yellow;
-		// } else if (source == panel.getBlueButton()) {
-		// 	color = Color.blue;
-		// }
+		} else if (source == panel.getRedButton()) {
+			ballColor = Color.red;
+		} else if (source == panel.getBlackButton()) {
+			ballColor = Color.black;
+		} else if (source == panel.getOrangeButton()) {
+			ballColor = Color.orange;
+		} else if (source == panel.getWhiteButton()) {
+			backgroundColor = Color.white;
+		} else if (source == panel.getBlackButton2()) {
+			backgroundColor = Color.black;
+		} else if (source == panel.getPlayButton()) {
+			JFrame window = panel.getWindow();
+			window.getContentPane().removeAll();
+			var gameplay = new GameScreen(window);
+			gameplay.start();
+			window.pack();
+			window.revalidate();
+		
+		}
 
 	}
 
 	@Override
 	public void mousePressed(MouseEvent e) {
-		// ++clicks;
-		// switch(clicks) {
-		// 	case 1:
-		// 		triangle = new Triangle();
-		// 		triangle.setPos(0, e.getX(), e.getY());
-		// 		triangle.setColor(color);
-		// 		panel.getCanvas().getShapes().add(triangle);
-		// 		break;
-		// 	case 2:
-		// 		triangle.setPos(1, e.getX(), e.getY());
-		// 		break;
-		// 	case 3:
-		// 		triangle.setPos(2, e.getX(), e.getY());
-		// 		clicks = 0;
-		// 		break;
-		// }
+	
 		// panel.getCanvas().repaint();
 	}
 

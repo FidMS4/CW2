@@ -20,15 +20,15 @@ public class MenuScreen {
 	
 		JButton pongButton = new JButton("Pong");
 		pongButton.setPreferredSize(new Dimension(400, 190));
-		JTextArea info = new JTextArea("by Fidel Munoz");
+		JTextArea info = new JTextArea("by Fidel");
 		panel.add(pongButton);
 		panel.add(info);
 		cp.add(BorderLayout.CENTER, panel);
 
 		pongButton.addActionListener( e -> {
 			window.getContentPane().removeAll();
-			var pong = new PongMenu(window);
-			pong.start();
+			var gameplay = new GameScreen(window);
+			gameplay.start();
 			window.pack();
 			window.revalidate();
 		});
