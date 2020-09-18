@@ -5,22 +5,20 @@ import javax.swing.*;
 import javax.swing.border.*;
 
 import Controller.PongEventListener;
-import Model.Pong;
+import Model.Rectangle;
 
 public class GameScreen {
-	// public enum GameState {
-	// 	READY, PLAYING, GAMEOVER
-	// }
 
 	private JFrame window;
-	private Pong canvas;
+	private PongCanvas canvas;
+	Rectangle rect1 = new Rectangle(15, 225, 20, 60);
+	Rectangle rect2 = new Rectangle(465, 225, 20, 60);
 	private JButton playButton = new JButton("Play!");
-	//private GameState gameState = GameState.READY;
 	private JRadioButton redButton = new JRadioButton("Red");
 	private JRadioButton blackButton = new JRadioButton("Black");
 	private JRadioButton orangeButton = new JRadioButton("Orange");
-	private JRadioButton whiteButton = new JRadioButton("Black");
-	private JRadioButton blackButton2 = new JRadioButton("White");
+	private JRadioButton whiteButton = new JRadioButton("White");
+	private JRadioButton blackButton2 = new JRadioButton("Black");
 	private JButton exitButton = new JButton("Exit");
 
 	public GameScreen(JFrame window) {
@@ -35,6 +33,8 @@ public class GameScreen {
 		southPanel.setLayout(new GridLayout(3, 1));
 		cp.add(BorderLayout.SOUTH, southPanel);
 
+		canvas = new PongCanvas(this);
+		cp.add(BorderLayout.CENTER, canvas);
 
 		JPanel radioPanel = new JPanel();
 		radioPanel.add(redButton);
@@ -109,7 +109,7 @@ public class GameScreen {
 		return window;
 	}
 
-	public Pong getCanvas() {
+	public PongCanvas getCanvas() {
 		return canvas;
 	}
 
