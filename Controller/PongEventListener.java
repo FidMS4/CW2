@@ -7,12 +7,10 @@ import javax.swing.*;
 import View.GameScreen;
 import View.MenuScreen;
 import View.PongCanvas;
-import Model.Rectangle;
 
 public class PongEventListener implements ActionListener, MouseListener {
 	
 	private GameScreen panel;
-	Rectangle rect1;
 
 	public PongEventListener(GameScreen panel) {
 		this.panel = panel;
@@ -50,20 +48,21 @@ public class PongEventListener implements ActionListener, MouseListener {
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		int a = e.getY(); 
-		rect1.setY(a);
+		int a = e.getY();
+		panel.rect1.setY(a);
+		panel.getCanvas().repaint();
 	}
 
 	@Override
 	public void mousePressed(MouseEvent e) {}
 
 	@Override
-	public void mouseReleased(MouseEvent e) { }
+	public void mouseReleased(MouseEvent e) {}
 
 	@Override
-	public void mouseEntered(MouseEvent e) { }
+	public void mouseEntered(MouseEvent e) {}
 
 	@Override
-	public void mouseExited(MouseEvent e) { }
+	public void mouseExited(MouseEvent e) {}
 
 }

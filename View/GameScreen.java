@@ -11,7 +11,7 @@ public class GameScreen {
 
 	private JFrame window;
 	private PongCanvas canvas;
-	Rectangle rect1 = new Rectangle(15, 225, 20, 60);
+	public Rectangle rect1 = new Rectangle(15, 225, 20, 60);
 	Rectangle rect2 = new Rectangle(465, 225, 20, 60);
 	private JButton playButton = new JButton("Play!");
 	private JRadioButton redButton = new JRadioButton("Red");
@@ -75,6 +75,7 @@ public class GameScreen {
 		whiteButton.addActionListener(listener);
 		blackButton2.addActionListener(listener);
 		playButton.addActionListener(listener);
+		canvas.addMouseListener(listener);
 	}
 
 	public JButton getExitButton() {

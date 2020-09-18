@@ -44,11 +44,11 @@ public class PongCanvas extends JPanel implements ActionListener {
 
 		g2d.setColor(Color.RED);
 		g2d.setFont(new Font("Courier", Font.BOLD, 20));
-		g2d.drawString("Score :" + leftHits, 50, 100);
+		g2d.drawString("Score: " + leftHits, 50, 100);
 
 		g2d.setColor(Color.RED);
 		g2d.setFont(new Font("Courier", Font.BOLD, 20));
-		g2d.drawString("Score :" + rightHits, 400, 100);
+		g2d.drawString("Score: " + rightHits, 400, 100);
 
 		if (x < 0) {
 			++leftHits;
@@ -58,6 +58,7 @@ public class PongCanvas extends JPanel implements ActionListener {
 		
 		t.start();
 	}
+	
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
@@ -65,10 +66,12 @@ public class PongCanvas extends JPanel implements ActionListener {
 			velX = -velX;
 		} else if (y < 0 || y > 460) {
 			velY = -velY;
-		}
-
+		} 
+		
 		x += velX;
 		y += velY;
+
+		panel.rect2.setY(y + 5);
 		repaint();
 	}
 
